@@ -2,10 +2,17 @@ sequenceDiagram
     participant browser
     participant server
 
+    Preconditions: https://studies.cs.helsinki.fi/exampleapp/notes Page was already launched
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser: HTML document with HTTP status code 302
+
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
     server-->>browser: HTML document
     deactivate server
+
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
     activate server
@@ -21,7 +28,8 @@ sequenceDiagram
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
-    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    server-->>browser: [{ "content": "content": "NEW DK", "date": "2025-05-04T23:56:17.378Z" }, ... ]
     deactivate server
+
 
     Note right of browser: The browser executes the callback function that renders the notes
